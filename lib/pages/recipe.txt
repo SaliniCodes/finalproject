@@ -1,0 +1,193 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
+import 'package:http/http.dart' as http; // Import the http package
+import 'package:exam/bloc/chat_bloc.dart';
+import 'package:exam/models/chat_message_model.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final ChatBloc chatBloc = ChatBloc();
+  TextEditingController textEditingController = TextEditingController();
+  String recipeText = '';
+
+  void _saveRecipe() {
+    if (recipeText.isNotEmpty) {
+      _sendRecipeToServer(recipeText);
+    } else {
+      // Show a message to the user indicating that the recipe text is empty
+    }
+  }
+
+  Future<void> _sendRecipeToServer(String recipe) async {
+    try {
+      // Make a POST request to your API endpoint
+      final response = await http.post(
+        Uri.parse('http://localhost:3000/api/dataupload'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{'recipe': recipe}),
+      );
+
+      // Check the response status
+      if (response.statusCode == 200) {
+        // Recipe uploaded successfully
+        print('Recipe uploaded successfully');
+      } else {
+        // Failed to upload recipe
+        print('Failed to upload recipe. Error ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Failed to upload recipe. Error: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BlocConsumer<ChatBloc, ChatState>(
+        bloc: chatBloc,
+        listener: (context, state) {},
+        builder: (context, state) {
+          switch (state.runtimeType) {
+            case ChatSuccessState:
+              List<ChatMessageModel> messages =
+                  (state as ChatSuccessState).messages;
+              return Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        opacity: 0.5,
+                        image: NetworkImage(
+                            "https://plus.unsplash.com/premium_photo-1661587759162-d2dd4934ce33?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVjaXBlfGVufDB8fDB8fHww"),
+                        fit: BoxFit.cover)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      height: 100,
+                      child: const Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Find your recipe",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 24),
+                          ),
+                          Icon(Icons.image_search, color: Colors.white)
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: messages.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: const EdgeInsets.only(
+                                bottom: 12, left: 16, right: 16),
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              color: Colors.amber.withOpacity(0.1),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  messages[index].role == "user"
+                                      ? "User"
+                                      : "Creating recipe",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: messages[index].role == "user"
+                                        ? Colors.amber
+                                        : Colors.purple.shade200,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                Text(
+                                  messages[index].parts.first.text,
+                                  style: TextStyle(height: 1.2),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    if (chatBloc.generating)
+                      Row(
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 100,
+                            child: Lottie.asset(''),
+                          ),
+                          const SizedBox(width: 20),
+                          Text("Loading..."),
+                        ],
+                      ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 30, horizontal: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: textEditingController,
+                              onChanged: (value) {
+                                setState(() {
+                                  recipeText = value;
+                                });
+                              },
+                              style: TextStyle(color: Colors.black),
+                              cursorColor: Theme.of(context).primaryColor,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                fillColor: Colors.white,
+                                hintText: "Enter your recipe here",
+                                hintStyle:
+                                    TextStyle(color: Colors.grey.shade400),
+                                filled: true,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          ElevatedButton(
+                            onPressed: _saveRecipe,
+                            child: Text('Save'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+
+            default:
+              return SizedBox();
+          }
+        },
+      ),
+    );
+  }
+}

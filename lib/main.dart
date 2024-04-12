@@ -34,8 +34,11 @@
 //     );
 //   }
 // }
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:exam/pages/home_page.dart';
+import 'package:exam/pages/history.dart';
 
 void main() => runApp(new MyApp());
 
@@ -45,7 +48,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      // home: HomePage(),
+       home: History(),
+
       theme: ThemeData(
           brightness: Brightness.dark,
           fontFamily: 'SixtyFour',

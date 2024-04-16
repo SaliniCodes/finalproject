@@ -192,24 +192,54 @@ class _HistoryState extends State<History> {
       appBar: AppBar(
         title: Text('Generated Texts'),
       ),
-      body: ListView.builder(
-        itemCount: generatedTexts.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(generatedTexts[index]),
-            trailing: IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () {
-                String id = messageId[index];
-                deleteItem(id);
-              },
-            ),
-          );
-        },
-      ),
-    );
+  //     body: ListView.builder(
+  //       itemCount: generatedTexts.length,
+  //       itemBuilder: (context, index) {
+  //         return ListTile(
+  //           title: Text(generatedTexts[index]),
+  //           trailing: IconButton(
+  //             icon: Icon(Icons.delete),
+  //             onPressed: () async{
+  //               String id = messageId[index];
+  //              await deleteItem(id);
+  //               fetchData();
+  //             },
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
+        body:RefreshIndicator(
+          onRefresh: () async {
+            // Implement your refresh logic here
+            await fetchData(); // Assuming fetchData() retrieves the updated data
+          },
+          child: ListView.builder(
+            itemCount: generatedTexts.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(generatedTexts[index]),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () async {
+                    String id = messageId[index];
+                    await deleteItem(id);
+                    setState(() {
+                      // Update your generatedTexts and messageId lists
+                      generatedTexts.removeAt(index);
+                      messageId.removeAt(index);
+                    });
+                  },
+                ),
+              );
+            },
+          ),),);
+
   }
-  Future<void> deleteItem(String id) async {
+
+
+        Future<void> deleteItem(String id) async {
     try {
       final Uri uri = Uri.parse('http://localhost:3000/recipelistapi/deletedata/$id');
       final response = await http.delete(uri);

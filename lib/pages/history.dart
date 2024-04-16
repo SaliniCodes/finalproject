@@ -212,8 +212,7 @@ class _HistoryState extends State<History> {
   // }
         body:RefreshIndicator(
           onRefresh: () async {
-            // Implement your refresh logic here
-            await fetchData(); // Assuming fetchData() retrieves the updated data
+            await fetchData();
           },
           child: ListView.builder(
             itemCount: generatedTexts.length,
@@ -226,7 +225,6 @@ class _HistoryState extends State<History> {
                     String id = messageId[index];
                     await deleteItem(id);
                     setState(() {
-                      // Update your generatedTexts and messageId lists
                       generatedTexts.removeAt(index);
                       messageId.removeAt(index);
                     });

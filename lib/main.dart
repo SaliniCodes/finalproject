@@ -36,6 +36,7 @@
 // }
 import 'dart:html';
 
+import 'package:exam/pages/search.dart';
 import 'package:exam/pages/update.dart';
 import 'package:flutter/material.dart';
 import 'package:exam/pages/home_page.dart';
@@ -49,9 +50,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       // home: HomePage(),
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
        //home: History(),
-      home:update(),
+      //home:update(),
+      // home:Search(),
 
 
       theme: ThemeData(

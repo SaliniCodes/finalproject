@@ -243,6 +243,12 @@
 
 
 
+import 'dart:html';
+
+import 'package:exam/pages/search.dart';
+import 'package:exam/pages/update.dart';
+import 'package:exam/pages/history.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -265,6 +271,37 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Recipe App'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.update),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => update()),
+              );            },
+          ),
+          IconButton(
+            icon: Icon(Icons.history),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => History()),
+              ); // Navigate to the history screen
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Search()),
+              ); /// Navigate to the search recipe screen
+            },
+          ),
+        ],
+      ),
       body: BlocConsumer<ChatBloc, ChatState>(
         bloc: chatBloc,
         listener: (context, state) {},

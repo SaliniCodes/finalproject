@@ -34,8 +34,8 @@
 //     );
 //   }
 // }
-import 'dart:html';
 
+import 'package:exam/pages/home.dart';
 import 'package:exam/pages/search.dart';
 import 'package:exam/pages/update.dart';
 import 'package:flutter/material.dart';
@@ -51,14 +51,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      // home: HomePage(),
        //home: History(),
       //home:update(),
-      // home:Search(),
+       home:Search(),
+      // home:RecipeHome(),
 
 
       theme: ThemeData(
-          brightness: Brightness.dark,
+          // brightness: Brightness.dark,
           fontFamily: 'SixtyFour',
           scaffoldBackgroundColor: Colors.grey.shade900,
           primaryColor: Colors.grey.shade900),

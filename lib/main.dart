@@ -54,14 +54,14 @@ class MyApp extends StatelessWidget {
       // home: HomePage(),
        //home: History(),
       //home:update(),
-       home:Search(),
-      // home:RecipeHome(),
+      //  home:Search(),
+      home:RecipeHome(),
 
 
       theme: ThemeData(
           // brightness: Brightness.dark,
           fontFamily: 'SixtyFour',
-          scaffoldBackgroundColor: Colors.grey.shade900,
+          // scaffoldBackgroundColor: Colors.grey.shade900,
           primaryColor: Colors.grey.shade900),
     );
   }

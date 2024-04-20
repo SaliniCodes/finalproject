@@ -74,24 +74,60 @@ class _SearchState extends State<Search> {
       body: Stack(
         children: [
           // Background carousel slider
-          CarouselSlider(
-            items: [
-              Image.network('https://images.unsplash.com/photo-1498612753354-772a30629934?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVjaXBlJTIwaW1hZ2VzfGVufDB8fDB8fHww'),
-              Image.network('https://images.unsplash.com/photo-1504387828636-abeb50778c0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJlY2lwZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D'),
-              Image.network('https://plus.unsplash.com/premium_photo-1661582001283-cb723906b901?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVjaXBlJTIwaW1hZ2VzJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D'),
-            ],
-            options: CarouselOptions(
-              height: double.infinity, // Fill the entire height of the screen
-              enlargeCenterPage: true,
-              viewportFraction: 1.0, // Ensure each image fills the entire screen width
-              autoPlay: true, // Enable automatic movement
-              autoPlayInterval: Duration(seconds: 3), // Set the duration between slides
-              autoPlayAnimationDuration: Duration(milliseconds: 800), // Set the animation duration
-              autoPlayCurve: Curves.fastOutSlowIn, // Set the animation curve
-              pauseAutoPlayOnTouch: true, // Pause automatic movement on touch
-            ),
-          ),
+          // CarouselSlider(
+          //   items: [
+          //     Image.network('https://images.unsplash.com/photo-1498612753354-772a30629934?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVjaXBlJTIwaW1hZ2VzfGVufDB8fDB8fHww'),
+          //     Image.network('https://images.unsplash.com/photo-1504387828636-abeb50778c0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJlY2lwZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D'),
+          //     Image.network('https://plus.unsplash.com/premium_photo-1661582001283-cb723906b901?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVjaXBlJTIwaW1hZ2VzJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D'),
+          //   ],
+          //   options: CarouselOptions(
+          //     // aspectRatio: MediaQuery.of(context).size.width /
+          //     //     MediaQuery.of(context).size.height,
+          //     // viewportFraction: 1.0,
+          //     // autoPlay: true,
+          //     // autoPlayInterval: Duration(seconds: 3),
+          //     // autoPlayAnimationDuration: Duration(milliseconds: 800),
+          //     // autoPlayCurve: Curves.fastOutSlowIn,
+          //      aspectRatio: MediaQuery.of(context).size.width /
+          //     //     MediaQuery.of(context).size.height,
+          //     viewportFraction: 1.0,
+          //     autoPlay: true,
+          //     autoPlayInterval: Duration(seconds: 3),
+          //     autoPlayAnimationDuration: Duration(milliseconds: 800),
+          //     autoPlayCurve: Curves.fastOutSlowIn,
+          //   ),
+          // ),
           // Search bar and results
+          CarouselSlider(
+            options: CarouselOptions(
+              aspectRatio: MediaQuery.of(context).size.width /
+                  MediaQuery.of(context).size.height,
+              viewportFraction: 1.0,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+            ),
+            items: [
+              // Replace these containers with network images
+              NetworkImage(
+                'https://images.unsplash.com/photo-1498612753354-772a30629934?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVjaXBlJTIwaW1hZ2VzfGVufDB8fDB8fHww',
+              ),
+              NetworkImage('https://images.unsplash.com/photo-1504387828636-abeb50778c0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJlY2lwZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D'
+              ),
+              NetworkImage('https://plus.unsplash.com/premium_photo-1661582001283-cb723906b901?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVjaXBlJTIwaW1hZ2VzJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D'
+              ),
+            ].map((imageProvider) {
+              return Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
           Padding(
             padding: const EdgeInsets.all(35.0),
             child: Column(
@@ -100,7 +136,7 @@ class _SearchState extends State<Search> {
                 // Search bar with black background
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
                   ),
                   child: Padding(

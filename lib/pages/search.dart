@@ -73,31 +73,7 @@ class _SearchState extends State<Search> {
       // ),
       body: Stack(
         children: [
-          // Background carousel slider
-          // CarouselSlider(
-          //   items: [
-          //     Image.network('https://images.unsplash.com/photo-1498612753354-772a30629934?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVjaXBlJTIwaW1hZ2VzfGVufDB8fDB8fHww'),
-          //     Image.network('https://images.unsplash.com/photo-1504387828636-abeb50778c0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJlY2lwZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D'),
-          //     Image.network('https://plus.unsplash.com/premium_photo-1661582001283-cb723906b901?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVjaXBlJTIwaW1hZ2VzJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D'),
-          //   ],
-          //   options: CarouselOptions(
-          //     // aspectRatio: MediaQuery.of(context).size.width /
-          //     //     MediaQuery.of(context).size.height,
-          //     // viewportFraction: 1.0,
-          //     // autoPlay: true,
-          //     // autoPlayInterval: Duration(seconds: 3),
-          //     // autoPlayAnimationDuration: Duration(milliseconds: 800),
-          //     // autoPlayCurve: Curves.fastOutSlowIn,
-          //      aspectRatio: MediaQuery.of(context).size.width /
-          //     //     MediaQuery.of(context).size.height,
-          //     viewportFraction: 1.0,
-          //     autoPlay: true,
-          //     autoPlayInterval: Duration(seconds: 3),
-          //     autoPlayAnimationDuration: Duration(milliseconds: 800),
-          //     autoPlayCurve: Curves.fastOutSlowIn,
-          //   ),
-          // ),
-          // Search bar and results
+
           CarouselSlider(
             options: CarouselOptions(
               aspectRatio: MediaQuery.of(context).size.width /

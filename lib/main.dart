@@ -51,11 +51,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomePage(),
-       //home: History(),
+       // home: HomePage(),
+      //  home: History(),
       //home:update(),
       //  home:Search(),
-      home:RecipeHome(),
+       home:RecipeHome(),
 
 
       theme: ThemeData(

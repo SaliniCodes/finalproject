@@ -271,6 +271,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
+
         title: Text('Recipe App'),
         actions: [
           IconButton(
@@ -331,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Find your recipe",
+                            "Chat with AI",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 24,
@@ -401,7 +403,6 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             height: 100,
                             width: 100,
-                            child: Lottie.asset(''),
                           ),
                           const SizedBox(width: 20),
                           Text("Loading..."),

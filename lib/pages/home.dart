@@ -95,6 +95,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:exam/pages/history.dart';
 
+import '../mainhome.dart';
+
 
 class RecipeHome extends StatelessWidget {
   const RecipeHome({Key? key});
@@ -205,7 +207,9 @@ class RecipeHome extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => History()),
+                      // MaterialPageRoute(builder: (context) => History()),
+                      MaterialPageRoute(builder: (context) => mainhome()),
+
                     );
                   },
                   child: Text('Get Started',style: GoogleFonts.lobster(

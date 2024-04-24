@@ -111,6 +111,8 @@ import 'package:flutter/material.dart';
 import 'Home.dart';
 import 'package:http/http.dart' as http;
 
+import 'mainhome.dart';
+
 
 class signup extends StatelessWidget {
   signup({Key? key}) : super(key: key);
@@ -165,12 +167,22 @@ class signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
+      child: Scaffold(appBar:AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => mainhome()),
+            );          },
+        ),),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(
-                'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHdoaXRlJTIwJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D',
+                'https://images.unsplash.com/photo-1493808997710-b9681bc18443?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               ),
               fit: BoxFit.cover,
             ),
@@ -201,44 +213,74 @@ class signup extends StatelessWidget {
                 controller: fcontroller,
                 decoration: InputDecoration(
                   labelText: 'Enter your firstname',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.white), // Color of the label text
+
+                  hintStyle: TextStyle(color: Colors.white), // Color of the hint text
+
+                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 5),
               TextField(
                 controller: lcontroller,
                 decoration: InputDecoration(
                   labelText: 'Enter your lastname',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.white), // Color of the label text
+
+                  hintStyle: TextStyle(color: Colors.white), // Color of the hint text
+
+                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 5),
               TextField(
                 controller: emailcontroller,
                 decoration: InputDecoration(
                   labelText: 'Enter your email',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.white), // Color of the label text
+
+                  hintStyle: TextStyle(color: Colors.white), // Color of the hint text
+
+                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
+              SizedBox(height: 5),
+
               TextField(
                 controller: pcontroller,
                 decoration: InputDecoration(
                   labelText: 'Enter your phone',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.white), // Color of the label text
+
+                  hintStyle: TextStyle(color: Colors.white), // Color of the hint text
+
+                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
+              SizedBox(height: 5),
+
               TextField(
                 controller: passcontroller,
                 decoration: InputDecoration(
                   labelText: 'Enter your password',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.white), // Color of the label text
+
+                  hintStyle: TextStyle(color: Colors.white), // Color of the hint text
+
+                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
+              SizedBox(height: 5),
+
               TextField(
                 controller: agecontroller,
                 decoration: InputDecoration(
                   labelText: 'Enter your age',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.white), // Color of the label text
+
+                  hintStyle: TextStyle(color: Colors.white), // Color of the hint text
+
+                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                 ),
               ),
               SizedBox(height: 10),
@@ -253,7 +295,7 @@ class signup extends StatelessWidget {
                     },
                     child: Text('Create Account',),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey,
+                      backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                     ),
                   ),

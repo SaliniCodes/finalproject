@@ -374,6 +374,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import 'Home.dart';
+import 'mainhome.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -467,12 +468,22 @@ class _LoginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
+      child: Scaffold(appBar:AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => mainhome()),
+            );          },
+        ),),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(
-                'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHdoaXRlJTIwJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D',
+                'https://images.unsplash.com/photo-1493808997710-b9681bc18443?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               ),
               fit: BoxFit.cover,
             ),
@@ -489,7 +500,7 @@ class _LoginState extends State<login> {
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
-                      color: Colors.blueGrey,
+                      color: Colors.white,
                     ),
                   ),
                   SizedBox(height: 10),
@@ -524,7 +535,7 @@ class _LoginState extends State<login> {
                     },
                     child: Text('Login'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey,
+                      backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                     ),
                   ),

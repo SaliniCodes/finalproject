@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
        // home: HomePage(),
       //  home: History(),
       //home:update(),
-      //  home:Search(),
+        //home:Search(),
        home:RecipeHome(),
 
 

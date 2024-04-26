@@ -430,11 +430,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
 
 class History extends StatefulWidget {
-  const History({Key? key}) : super(key: key);
+  final String token; // Add token parameter to the constructor
+
+
+  const History({Key? key,required this.token }) : super(key: key);
+
 
   @override
   _HistoryState createState() => _HistoryState();
@@ -444,16 +449,22 @@ class _HistoryState extends State<History> {
   List<String> generatedTexts = [];
   List<String> messageId = [];
 
+  String email ='';
+  String password='';
+  String token='';
+
   @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
 
   Future<void> fetchData() async {
     try {
       final Uri uri = Uri.parse('http://localhost:3000/recipelistapi/getdatahistory');
-      final response = await http.get(uri);
+      final response = await http.get(
+        uri,
+        headers: <String, String>{
+          'Authorization': 'Bearer $token',
+
+        },
+      );
 
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
@@ -461,7 +472,8 @@ class _HistoryState extends State<History> {
         setState(() {
           generatedTexts =
           List<String>.from(data.map((item) => item['message'].toString()));
-          messageId = List<String>.from(data.map((item) => item['_id'].toString()));
+          messageId =
+          List<String>.from(data.map((item) => item['_id'].toString()));
         });
         print(messageId);
       } else {
@@ -472,6 +484,20 @@ class _HistoryState extends State<History> {
     }
   }
 
+
+  Future<void> getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      email = prefs.getString('email') ?? ''; // Initialize with default value
+      password = prefs.getString('password') ?? ''; // Initialize with default value
+    });
+  }
+  void initState() {
+    super.initState();
+    fetchData();
+    getData();
+
+  }
   Future<void> deleteItem(String id) async {
     try {
       final Uri uri = Uri.parse('http://localhost:3000/recipelistapi/deletedatahistory/$id');
@@ -501,6 +527,7 @@ class _HistoryState extends State<History> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         backgroundColor: Colors.black,
         elevation: 0,
         leading: IconButton(
@@ -523,7 +550,31 @@ class _HistoryState extends State<History> {
             },
           ),
         ],
+        flexibleSpace: FlexibleSpaceBar(
+          centerTitle: true,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                'Email: ${email != null ? email : ""}',
+                style: TextStyle(fontSize: 18.0, color: Colors.white),
+              ),
+              Text(
+                'Password: ${password != null ? password : ""}',
+                style: TextStyle(fontSize: 18.0, color: Colors.white),
+              ),
+              Text(
+                'token: ${token != null ? token : ""}',
+                style: TextStyle(fontSize: 18.0, color: Colors.white),
+              ),
+
+            ],
+          ),
+        ),
       ),
+
+
       body: RefreshIndicator(
         onRefresh: refreshData,
         child: Stack(

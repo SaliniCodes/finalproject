@@ -366,17 +366,19 @@
 //   }
 // }
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-
 import 'Home.dart';
+import'pages/history.dart';
 import 'mainhome.dart';
 
 class login extends StatefulWidget {
+
   const login({Key? key}) : super(key: key);
 
   @override
@@ -393,37 +395,9 @@ class _LoginState extends State<login> {
     fetchData();
   }
 
-  // Future<void> fetchData() async {
-  //   final url = Uri.parse('http://localhost:3000/loginapi/login');
-  //
-  //   final response = await http.post(
-  //     url,
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(<String, String>{
-  //       'email': userController.text,
-  //       'password': passController.text,
-  //       // Add any other data you want to send in the body
-  //     }),
-  //   );
-  //
-  //   if (response.statusCode == 200) {
-  //     final dynamic data = jsonDecode(response.body);
-  //     print("Response Data: $data");
-  //
-  //     if (data['articles'] != null) {
-  //       setState(() {
-  //         // Update your UI or handle the response data here
-  //       });
-  //     } else {
-  //       print('Error: Articles data is null');
-  //     }
-  //   } else {
-  //     print('Error: ${response.statusCode}');
-  //     print('Response Body: ${response.body}');
-  //   }
-  // }
+
+
+
   Future<void> fetchData() async {
     final url = Uri.parse('http://localhost:3000/loginapi/login');
 
@@ -443,16 +417,20 @@ class _LoginState extends State<login> {
       final dynamic data = jsonDecode(response.body);
       print("Response Data: $data");
 
-      if (data =='loginsuccess') {
+      if (data['message'] =='successfull') {
+        String token = data['Token'];
+
         // Save email and password to shared preferences
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('email', userController.text);
         await prefs.setString('password', passController.text);
+        await prefs.setString('token', token);
+
 
         // Navigate to another page with email and password
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Home()),
+          MaterialPageRoute(builder: (context) => History(token: token)),
         );
       } else {
         print('Error: Login failed');
@@ -548,4 +526,5 @@ class _LoginState extends State<login> {
     );
   }
 }
+
 

@@ -303,7 +303,7 @@ class _SearchState extends State<Search> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => History()),
+              MaterialPageRoute(builder: (context) => History(token: 'token',)),
             );
           },
         ),

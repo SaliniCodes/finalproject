@@ -368,6 +368,7 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:exam/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -416,6 +417,7 @@ class _LoginState extends State<login> {
     if (response.statusCode == 200) {
       final dynamic data = jsonDecode(response.body);
       print("Response Data: $data");
+      print(data['id']);
 
       if (data['message'] =='successfull') {
         String token = data['Token'];
@@ -430,7 +432,9 @@ class _LoginState extends State<login> {
         // Navigate to another page with email and password
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => History(token: token)),
+          // MaterialPageRoute(builder: (context) => History(token: token)),
+          MaterialPageRoute(builder: (context) => HomePage(token: token, userId: data['id'])),
+
         );
       } else {
         print('Error: Login failed');

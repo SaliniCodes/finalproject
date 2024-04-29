@@ -40,20 +40,19 @@ class mainhome extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 100),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //
-                  //     Text('Student Exam'),
-                  //   ],
+                  SizedBox(height: 50),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  // //   children: [
+                  // //
+                  // //     Text('Student Exam'),
+                  // //   ],
+                  // // ),
+                  // // SizedBox(height: 10),
+                  // // Text(
+                  // //   "Welcome to student ",
+                  // //   style: TextStyle(fontSize: 20,),
                   // ),
-                  // SizedBox(height: 10),
-                  // Text(
-                  //   "Welcome to student ",
-                  //   style: TextStyle(fontSize: 20,),
-                  ),
-                  SizedBox(height: 150),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -63,13 +62,18 @@ class mainhome extends StatelessWidget {
                         }),
                       );
                     },
-                    child: Text("SIGNUP"),
-                    style: ElevatedButton.styleFrom(
+                    child: Text("SIGNUP",style:GoogleFonts.lobster(
+                      textStyle: TextStyle(
+                        fontSize: 20, // Set the font size
+                      ),
+                    ),),
+                    style: ElevatedButton.styleFrom( fixedSize: Size(200, 50) ,
+                      shape: OvalBorder(side:BorderSide(color: Colors.white) ),
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
                   Text(
                     "Already have an account?",
                     style: GoogleFonts.lobster(
@@ -78,7 +82,7 @@ class mainhome extends StatelessWidget {
                         fontSize: 18,
                       ),
                     ),                  ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -88,8 +92,14 @@ class mainhome extends StatelessWidget {
                         }),
                       );
                     },
-                    child: Text("LOGIN"),
-                    style: ElevatedButton.styleFrom(
+                    child: Text("LOGIN",style:GoogleFonts.lobster(
+                      textStyle: TextStyle(
+                        fontSize: 20, // Set the font size
+                      ),
+                    ),),
+                    style: ElevatedButton.styleFrom( fixedSize: Size(200, 50) ,// Set the size of the button (width, height)
+                        shape: OvalBorder(side:BorderSide(color: Colors.white) ),
+
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                     ),

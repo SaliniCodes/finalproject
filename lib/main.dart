@@ -62,7 +62,8 @@ class MyApp extends StatelessWidget {
           // brightness: Brightness.dark,
           fontFamily: 'SixtyFour',
           // scaffoldBackgroundColor: Colors.grey.shade900,
-          primaryColor: Colors.grey.shade900),
+          primaryColor: Colors.grey.shade900
+      ),
     );
   }
 }

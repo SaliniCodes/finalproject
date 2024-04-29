@@ -107,6 +107,7 @@ import 'dart:js';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'Home.dart';
 import 'package:http/http.dart' as http;
@@ -198,19 +199,22 @@ class signup extends StatelessWidget {
                   // Text('SIGN UP'),
                   Text(
                     'SIGN UP',
-                    style: TextStyle(fontWeight:FontWeight.w600,
-                      fontSize: 20, // Set the desired font size
-                      color: Colors.green, // Set the desired font color
-                      // You can also set other properties like fontWeight, fontStyle, etc. if needed
+                    style: GoogleFonts.lobster(
+                      textStyle: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
+
                   SizedBox(height: 10),
 
 
                 ],
               ),
               TextField(
-                controller: fcontroller,
+                controller: fcontroller,style:TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Enter your firstname',
                   labelStyle: TextStyle(color: Colors.white), // Color of the label text
@@ -222,7 +226,7 @@ class signup extends StatelessWidget {
               ),
               SizedBox(height: 5),
               TextField(
-                controller: lcontroller,
+                controller: lcontroller,style:TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Enter your lastname',
                   labelStyle: TextStyle(color: Colors.white), // Color of the label text
@@ -234,7 +238,7 @@ class signup extends StatelessWidget {
               ),
               SizedBox(height: 5),
               TextField(
-                controller: emailcontroller,
+                controller: emailcontroller,style:TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Enter your email',
                   labelStyle: TextStyle(color: Colors.white), // Color of the label text
@@ -247,7 +251,7 @@ class signup extends StatelessWidget {
               SizedBox(height: 5),
 
               TextField(
-                controller: pcontroller,
+                controller: pcontroller,style:TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Enter your phone',
                   labelStyle: TextStyle(color: Colors.white), // Color of the label text
@@ -260,7 +264,7 @@ class signup extends StatelessWidget {
               SizedBox(height: 5),
 
               TextField(
-                controller: passcontroller,
+                controller: passcontroller,style:TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Enter your password',
                   labelStyle: TextStyle(color: Colors.white), // Color of the label text
@@ -273,7 +277,7 @@ class signup extends StatelessWidget {
               SizedBox(height: 5),
 
               TextField(
-                controller: agecontroller,
+                controller: agecontroller,style:TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   labelText: 'Enter your age',
                   labelStyle: TextStyle(color: Colors.white), // Color of the label text
@@ -289,14 +293,16 @@ class signup extends StatelessWidget {
               SizedBox(height: 10),
               Row(
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      register(fcontroller.text,lcontroller.text,emailcontroller.text,pcontroller.text, passcontroller.text,agecontroller.text,context);
-                    },
-                    child: Text('Create Account',),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        register(fcontroller.text,lcontroller.text,emailcontroller.text,pcontroller.text, passcontroller.text,agecontroller.text,context);
+                      },
+                      child: Text('Create Account',),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                      ),
                     ),
                   ),
 

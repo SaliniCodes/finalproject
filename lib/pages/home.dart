@@ -1,15 +1,70 @@
+// // // import 'package:flutter/material.dart';
+// // //
+// // // class RecipeHome extends StatelessWidget {
+// // //   const RecipeHome({super.key});
+// // //
+// // //   @override
+// // //   Widget build(BuildContext context) {
+// // //     return Scaffold(backgroundColor: Colors.black,
+// // //       body: Stack(
+// // //         children: [
+// // //           Image(image: NetworkImage('https://plus.unsplash.com/premium_photo-1664648234285-3b238ab7f17b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8'),
+// // //           ),
+// // //           Container(
+// // //             width: MediaQuery.of(context).size.width,
+// // //             height: MediaQuery.of(context).size.height,
+// // //             decoration: BoxDecoration(
+// // //               gradient: LinearGradient(
+// // //                 colors: [
+// // //                   Colors.black,
+// // //                   Colors.transparent,
+// // //                 ],
+// // //                 stops: [
+// // //                   0.2,
+// // //                   1,
+// // //                 ],
+// // //                 begin: Alignment.bottomCenter,
+// // //                 end: Alignment.topCenter,
+// // //               ),
+// // //             ),
+// // //
+// // //           ),
+// // //           Padding(padding:EdgeInsets.fromLTRB(16,MediaQuery.of(context).padding.top* 14,
+// // //           16,MediaQuery.of(context).padding.top* 14
+// // //           ),),
+// // //           child:Column(
+// // //             children:[
+// // //               const spacer(),
+// // //               Text(
+// // //                 "Cooking &\nDelicious Food Easily",
+// // //                 style:Theme.of(context).textTheme
+// // //                   .headlineMedium?.copyWith(color:Colors.white),
+// // //               ),
+// // //             ],
+// // //           ),
+// // //         ],
+// // //       ),
+// // //     );
+// // //   }
+// // // }
 // // import 'package:flutter/material.dart';
 // //
 // // class RecipeHome extends StatelessWidget {
-// //   const RecipeHome({super.key});
+// //   const RecipeHome({Key? key});
 // //
 // //   @override
 // //   Widget build(BuildContext context) {
-// //     return Scaffold(backgroundColor: Colors.black,
+// //     return Scaffold(
+// //       backgroundColor: Colors.black,
 // //       body: Stack(
 // //         children: [
-// //           Image(image: NetworkImage('https://plus.unsplash.com/premium_photo-1664648234285-3b238ab7f17b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8'),
-// //           ),
+// //          Container( width: MediaQuery.of(context).size.width,
+// //            height: MediaQuery.of(context).size.height,
+// //            child: const Image(
+// //               image: NetworkImage(
+// //                   'https://plus.unsplash.com/premium_photo-1664648234285-3b238ab7f17b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8'),
+// //             ),
+// //          ),
 // //           Container(
 // //             width: MediaQuery.of(context).size.width,
 // //             height: MediaQuery.of(context).size.height,
@@ -27,68 +82,13 @@
 // //                 end: Alignment.topCenter,
 // //               ),
 // //             ),
+// //           ),
 // //
-// //           ),
-// //           Padding(padding:EdgeInsets.fromLTRB(16,MediaQuery.of(context).padding.top* 14,
-// //           16,MediaQuery.of(context).padding.top* 14
-// //           ),),
-// //           child:Column(
-// //             children:[
-// //               const spacer(),
-// //               Text(
-// //                 "Cooking &\nDelicious Food Easily",
-// //                 style:Theme.of(context).textTheme
-// //                   .headlineMedium?.copyWith(color:Colors.white),
-// //               ),
-// //             ],
-// //           ),
 // //         ],
 // //       ),
 // //     );
 // //   }
 // // }
-// import 'package:flutter/material.dart';
-//
-// class RecipeHome extends StatelessWidget {
-//   const RecipeHome({Key? key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.black,
-//       body: Stack(
-//         children: [
-//          Container( width: MediaQuery.of(context).size.width,
-//            height: MediaQuery.of(context).size.height,
-//            child: const Image(
-//               image: NetworkImage(
-//                   'https://plus.unsplash.com/premium_photo-1664648234285-3b238ab7f17b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8'),
-//             ),
-//          ),
-//           Container(
-//             width: MediaQuery.of(context).size.width,
-//             height: MediaQuery.of(context).size.height,
-//             decoration: BoxDecoration(
-//               gradient: LinearGradient(
-//                 colors: [
-//                   Colors.black,
-//                   Colors.transparent,
-//                 ],
-//                 stops: [
-//                   0.2,
-//                   1,
-//                 ],
-//                 begin: Alignment.bottomCenter,
-//                 end: Alignment.topCenter,
-//               ),
-//             ),
-//           ),
-//
-//         ],
-//       ),
-//     );
-//   }
-// }
 import 'package:exam/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -126,13 +126,14 @@ class RecipeHome extends StatelessWidget {
               // ),
               // NetworkImage('https://plus.unsplash.com/premium_photo-1661582001283-cb723906b901?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVjaXBlJTIwaW1hZ2VzJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D'
               // ),
-              NetworkImage('https://plus.unsplash.com/premium_photo-1664283229621-794dec382c4b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGNvb2tpbmd8ZW58MHx8MHx8fDA%3D'
+              NetworkImage(
+                'https://images.unsplash.com/photo-1493808997710-b9681bc18443?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               ),
-              NetworkImage('https://images.unsplash.com/photo-1540420828642-fca2c5c18abe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNvb2tpbmd8ZW58MHx8MHx8fDA%3D'
+              NetworkImage(
+                'https://images.unsplash.com/photo-1493808997710-b9681bc18443?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               ),
-
-              NetworkImage('https://plus.unsplash.com/premium_photo-1674624131338-eb4ad814b1e8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D'
-
+              NetworkImage(
+                'https://images.unsplash.com/photo-1493808997710-b9681bc18443?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
               ),
 
             ].map((imageProvider) {
@@ -164,6 +165,14 @@ class RecipeHome extends StatelessWidget {
               ),
             ),
           ),
+          Center(
+            child: Text('Welcome To CookBook',style:GoogleFonts.lobster(
+              textStyle: TextStyle(
+                color: Colors.white, // Set the color
+                fontSize: 36, // Set the font size
+              ),
+            ),),
+          ),
           Positioned(
             bottom: 50,
             left: 16,
@@ -171,6 +180,7 @@ class RecipeHome extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
@@ -198,10 +208,16 @@ class RecipeHome extends StatelessWidget {
 
 
                 SizedBox(height: 16),
-                ElevatedButton(style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                    Colors.red.withOpacity(0.87), // Red color with 87% opacity
-
+                ElevatedButton(style: ButtonStyle(backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.black),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                  fixedSize: MaterialStateProperty.all<Size>(Size(200, 50)), // Set the size of the button (width, height)
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25), // Adjust the border radius as needed
+                      side: BorderSide(color: Colors.white),
+                      // Border color
+                    ),
                   ),
                 ),
                   onPressed: () {
@@ -213,10 +229,10 @@ class RecipeHome extends StatelessWidget {
                     );
                   },
                   child: Text('Get Started',style: GoogleFonts.lobster(
-                    textStyle: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        ?.copyWith(color: Colors.white),
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
                   ),),
                 ),
               ],

@@ -778,16 +778,68 @@ class _HistoryState extends State<History> {
     getData();
 
   }
+  // Future<void> deleteItem(String id) async {
+  //   try {
+  //     final Uri uri = Uri.parse('http://localhost:3000/recipelistapi/deletedatahistory/$id');
+  //     final response = await http.delete(uri);
+  //
+  //     if (response.statusCode == 200) {
+  //       setState(() {
+  //         generatedTexts.removeWhere((text) => text == id);
+  //       });
+  //       print('Data deleted successfully');
+  //     } else if (response.statusCode == 404) {
+  //       print('Data not found');
+  //     } else {
+  //       print('Failed to delete data. Status code: ${response.statusCode}');
+  //     }
+  //   } catch (error) {
+  //     print('Error deleting data: $error');
+  //   }
+  // }
   Future<void> deleteItem(String id) async {
     try {
       final Uri uri = Uri.parse('http://localhost:3000/recipelistapi/deletedatahistory/$id');
       final response = await http.delete(uri);
 
       if (response.statusCode == 200) {
-        setState(() {
-          generatedTexts.removeWhere((text) => text == id);
-        });
-        print('Data deleted successfully');
+        // Show confirmation dialog
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: Colors.black,
+              title: Text('Confirm Deletion', style: TextStyle(color: Colors.white)),
+              content: Text('Are you sure you want to delete this item?', style: TextStyle(color: Colors.white)),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: Text('Cancel', style: TextStyle(color: Colors.white)),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    // Perform deletion
+                    final deletionResponse = await http.delete(uri);
+                    if (deletionResponse.statusCode == 200) {
+                      setState(() {
+                        generatedTexts.removeWhere((text) => text == id);
+                      });
+                      print('Data deleted successfully');
+                    } else if (deletionResponse.statusCode == 404) {
+                      print('Data not found');
+                    } else {
+                      print('Failed to delete data. Status code: ${deletionResponse.statusCode}');
+                    }
+                    Navigator.of(context).pop(); // Close dialog
+                  },
+                  child: Text('Delete', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            );
+          },
+        );
       } else if (response.statusCode == 404) {
         print('Data not found');
       } else {

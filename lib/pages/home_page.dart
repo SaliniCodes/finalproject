@@ -784,21 +784,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ChatBloc chatBloc = ChatBloc();
   TextEditingController textEditingController = TextEditingController();
-  String email ='';
+  String email = '';
+
   // String password='';
   Future<void> getData() async {
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       email = prefs.getString('email') ?? ''; // Initialize with default value
       // password = prefs.getString('password') ?? ''; // Initialize with default value
     });
   }
+
   void initState() {
     super.initState();
     getData();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -838,7 +839,8 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => History(token: '',userId:widget.userId)),
+                MaterialPageRoute(builder: (context) =>
+                    History(token: '', userId: widget.userId)),
               ); // Navigate to the history screen
             },
           ),
@@ -880,7 +882,9 @@ class _HomePageState extends State<HomePage> {
                             child: TextField(
                               controller: textEditingController,
                               style: TextStyle(color: Colors.black),
-                              cursorColor: Theme.of(context).primaryColor,
+                              cursorColor: Theme
+                                  .of(context)
+                                  .primaryColor,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(100),
@@ -893,7 +897,9 @@ class _HomePageState extends State<HomePage> {
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(100),
                                   borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor,
+                                    color: Theme
+                                        .of(context)
+                                        .primaryColor,
                                   ),
                                 ),
                               ),
@@ -918,7 +924,9 @@ class _HomePageState extends State<HomePage> {
                               child: CircleAvatar(
                                 radius: 30,
                                 backgroundColor:
-                                Theme.of(context).primaryColor,
+                                Theme
+                                    .of(context)
+                                    .primaryColor,
                                 child: Center(
                                   child:
                                   Icon(Icons.send, color: Colors.white),
@@ -1086,17 +1094,41 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+//   Future<void> saveChatMessage(ChatMessageModel message) async {
+//     final Uri uri =
+//     Uri.parse('http://localhost:3000/recipelistapi/dataupload');
+//
+//     final String sender = 'AI';
+//     final String generatedText = message.parts.first.text ?? '';
+// // final String userId = "helooo";
+//     final Map<String, dynamic> requestBody = {
+//       'sender': sender,
+//       'message': generatedText,
+//       'userId':widget.userId
+//     };
+//
+//     final response = await http.post(
+//       uri,
+//       body: json.encode(requestBody),
+//       headers: {'Content-Type': 'application/json'},
+//     );
+//
+//     if (response.statusCode == 200) {
+//       print('Chat message saved successfully.');
+//     } else {
+//       print('Failed to save chat message. ${response.body}');
+//     }
+//   }
+// }
   Future<void> saveChatMessage(ChatMessageModel message) async {
-    final Uri uri =
-    Uri.parse('http://localhost:3000/recipelistapi/dataupload');
+    final Uri uri = Uri.parse('http://localhost:3000/recipelistapi/dataupload');
 
     final String sender = 'AI';
     final String generatedText = message.parts.first.text ?? '';
-// final String userId = "helooo";
     final Map<String, dynamic> requestBody = {
       'sender': sender,
       'message': generatedText,
-      'userId':widget.userId
+      'userId': widget.userId
     };
 
     final response = await http.post(
@@ -1107,6 +1139,37 @@ class _HomePageState extends State<HomePage> {
 
     if (response.statusCode == 200) {
       print('Chat message saved successfully.');
+      // Show dialog box
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            backgroundColor: Colors.black,
+            title: Text(
+              'Success',
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Text(
+              'Chat message saved successfully.',
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'OK',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          );
+        },
+      );
     } else {
       print('Failed to save chat message. ${response.body}');
     }

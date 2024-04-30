@@ -1,3 +1,35 @@
+// import 'package:flutter/material.dart';
+//
+// class recipedetail extends StatefulWidget {
+//   final String content;
+//
+//   recipedetail({Key? key, required this.content}) : super(key: key);
+//
+//   @override
+//   State< recipedetail> createState() => _NextPageState();
+// }
+//
+// class _NextPageState extends State< recipedetail> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('RecipeDetial'),
+//       ),
+//       body: SingleChildScrollView(
+//         child: Center(
+//           child: Padding(
+//             padding: const EdgeInsets.all(16.0),
+//             child: Text(
+//               widget.content,
+//               style: TextStyle(fontSize: 18.0),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
